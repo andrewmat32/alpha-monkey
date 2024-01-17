@@ -1,4 +1,7 @@
 .section-about {
+    height: 25vh;
+    transition: height 1s ease-in-out;
+
     &__wrapper {
         @include container();
         width: 100%;
@@ -7,15 +10,61 @@
 
     &__logo {
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 86px;
 
         img {
             filter: brightness(0) invert(1);
-            @include absCenter();
             height: 3.5rem;
         }
     }
 
-    &:hover {
-        background-color: $color-background;
+    &__subtitle {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        @include transitionOpacityIn( 1s );
+        color: $color-primary;
+
+        .typewriter {
+            font-family: $font-primary;
+            @include typeWriter( $color-primary );
+            margin: 0 545px;
+        }
+    }
+
+    &__text {
+        @include transitionOpacityIn( .5s );
+        font-family: $font-display;
+        font-size: $size-xs;
+        padding-top: 50px;
+        margin: 0 auto;
+        text-indent: 4rem;
+        width: 75%;
+    }
+}
+
+
+.section-about:hover {
+    //background-color: $color-background;
+    height: 50vh;
+    transition: height 1s ease-in-out;
+
+    .section-about__subtitle {
+        @include transitionOpacityOut( 1s );
+        transition-delay: .5ms;
+
+        .typewriter {
+            display: block;
+            @include typeWriter( $color-primary, true );
+            margin: 0 545px;
+        }
+    }
+
+    .section-about__text {
+        @include transitionOpacityOut( 1s );
+        transition-delay: 1s;
     }
 }

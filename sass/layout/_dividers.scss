@@ -1,0 +1,52 @@
+.custom-shape-divider-top-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1 svg {
+    position: relative;
+    display: block;
+    width: calc(155% + 1.3px);
+    height: 84px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1 .shape-fill {
+    fill: $color-accent;
+    @include boxShadow( $color-accent );
+}
+
+.custom-shape-divider-bottom-1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+
+}
+
+.custom-shape-divider-bottom-1 svg {
+    position: relative;
+    display: block;
+    width: calc(114% + 1.3px);
+    height: 42px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1 .shape-fill {
+    fill: $color-accent;
+}
+
+#headerDivider {
+    height: 0;
+}
+#headerDivider.show {
+    height: auto;
+    transition: height 0.5s ease-in-out;
+}

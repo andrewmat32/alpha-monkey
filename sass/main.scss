@@ -3,14 +3,16 @@
 @import "abstracts/_variables";
 
 // BASE
+@import "base/typography";
 @import "base/animations";
 @import "base/base";
-@import "base/typography";
+
 
 // COMPONENTS
 @import "components/slider";
 
 // LAYOUT
+@import "layout/dividers";
 @import "layout/footer";
 @import "layout/header";
 @import "layout/navigation";

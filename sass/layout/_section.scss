@@ -1,8 +1,11 @@
 .section {
     position: relative;
-    @include boxShadow( $color-background );
-
     width: 100%;
+
+
+    &-box-shadow {
+        //@include boxShadow( $color-background, true );
+    }
 }
 
 .section-full {
@@ -26,3 +29,4 @@
 }
 
 @import 'sections/_section_about';
+@import 'sections/_section_testimonials';

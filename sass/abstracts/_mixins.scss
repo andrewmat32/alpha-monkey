@@ -70,6 +70,34 @@ ORDER: Base + typography > general layout + grid > page layout > components
   text-shadow: 0 0 1em ($color-black);
 }
 
-@mixin boxShadow( $color ) {
+@mixin boxShadow( $color, $bring-to-front: false ) {
     box-shadow: 0 0 4em ( $color );
+
+    //@if $bring-to-front {
+    //    z-index: 1;
+    //}
+}
+
+@mixin typeWriter( $color, $animate: false ) {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid $color; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+
+    @if $animate {
+        animation:
+              typing 3.5s steps(40, end),
+              blink-caret .75s step-end infinite;
+    }
+}
+
+@mixin transitionOpacityIn( $time ) {
+    opacity: 0;
+    transition: opacity $time ease-in-out;
+}
+
+@mixin transitionOpacityOut( $time ) {
+    opacity: 1;
+    transition: opacity $time ease-in-out;
 }
