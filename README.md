@@ -1,2 +1,3 @@
 # alpha-monkey
-CSS Project
+
+Showcase Project
