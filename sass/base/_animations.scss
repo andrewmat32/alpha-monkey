@@ -1,0 +1,99 @@
+@keyframes pan-image {
+    0% {
+        background-position: 36% 42%;
+        background-size: 150%;
+    }
+
+    20% {
+        background-position: 30% 35%;
+        background-size: 150%;
+    }
+
+    20.0001% { /* -- View 2 -- */
+        background-position: 60% 85%;
+        background-size: 250%;
+    }
+
+    40% {
+        background-position: 49% 81%;
+        background-size: 250%;
+    }
+
+    40.0001% { /* -- View 3 -- */
+        background-position: 80% 42%;
+        background-size: 200%;
+    }
+
+    60% {
+        background-position: 84% 33%;
+        background-size: 200%;
+    }
+
+    60.0001% { /* -- View 4 -- */
+        background-position: 0% 0%;
+        background-size: 200%;
+    }
+
+    80% {
+        background-position: 15% 4%;
+        background-size: 200%;
+    }
+
+    80.0001% { /* -- View 5 -- */
+        background-position: 80% 10%;
+        background-size: 200%;
+    }
+
+    100% {
+        background-position: 72% 14%;
+        background-size: 200%;
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    /*60% {*/
+    /*    transform: rotate(180deg);*/
+    /*}*/
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}

@@ -1,0 +1,75 @@
+.nav {
+    font-family: $font-primary;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    @include container();
+    padding: 20px 0 20px 0;
+}
+
+.nav ul {
+    --_gap: 2rem;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav a {
+    color: $color-primary;
+    opacity: 0.7;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: $size-sm;
+    font-weight: 500;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+    opacity: 1;
+}
+
+.nav li {
+    overflow: hidden;
+    position: relative;
+    padding: calc(var(--_gap) / 2);
+    min-inline-size: 3rem;
+}
+
+.nav li::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    block-size: 3px;
+    background-color: $color-accent;
+
+    translate: var(--_translate, 0);
+    scale: var(--_scale, 0) 1;
+    transition: scale 100ms var(--_scale-delay, 0ms),
+    translate 200ms;
+}
+
+/* A previous sibling is hovered */
+.nav li:hover ~ li {
+    --_translate: -100%;
+    --_scale-delay: 200ms;
+}
+
+/* Any other sibling is hovered */
+.nav:hover li {
+    --_translate: 100%;
+    --_scale-delay: 200ms;
+}
+
+/*
+  The actually hovered <li>
+
+  NOTE: same specificity as previous selector, so it must either come after or be artificially inflated (eg. :hover:hover)
+*/
+.nav li:hover {
+    --_scale: 1;
+    --_translate: 0;
+    --_scale-delay: 0ms;
+}

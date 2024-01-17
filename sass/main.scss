@@ -1,0 +1,18 @@
+// ABSTRACTS
+@import "abstracts/_mixins";
+@import "abstracts/_variables";
+
+// BASE
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+
+// COMPONENTS
+@import "components/slider";
+
+// LAYOUT
+@import "layout/footer";
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/section";
+

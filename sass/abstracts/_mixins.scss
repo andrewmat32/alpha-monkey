@@ -1,0 +1,75 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50%);
+}
+
+/*
+ MEDIA QUERY MANAGER
+0 - 600px: PHONE
+500 - 900px: TABLET PORTRAIT
+900 - 1200px: TABLET LANDSCAPE
+[ 1200 - 1800 ] WHERE NORMAL STYLES APPLY
+1800px: TABLET PORTRAIT
+
+
+$breakpoint argument choices
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+
+ORDER: Base + typography > general layout + grid > page layout > components
+ */
+
+@mixin respond($breakpoint)
+{
+  @if $breakpoint == 'phone'
+  {
+    @media screen and ( max-width: 37.5em ) {@content} // 600px
+  }
+
+  @if $breakpoint == 'tab-port'
+  {
+    @media screen and  ( max-width: 56.25em ) {@content} // 900px
+  }
+
+  @if $breakpoint == 'tab-land'
+  {
+    @media screen and  ( max-width: 75em ) {@content} // 1200px
+  }
+
+  @if $breakpoint == 'big-desktop'
+  {
+    @media screen and  ( min-width: 112.5em ) {@content} // 1800px
+  }
+}
+
+@mixin container {
+    padding: 0 16px;
+
+    @media screen and ( min-width: $bp-largest ) {
+      max-width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+
+@mixin textShadow {
+  text-shadow: 0 0 1em ($color-black);
+}
+
+@mixin boxShadow( $color ) {
+    box-shadow: 0 0 4em ( $color );
+}

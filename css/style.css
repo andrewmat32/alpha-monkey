@@ -1,0 +1,249 @@
+/*
+ MEDIA QUERY MANAGER
+0 - 600px: PHONE
+500 - 900px: TABLET PORTRAIT
+900 - 1200px: TABLET LANDSCAPE
+[ 1200 - 1800 ] WHERE NORMAL STYLES APPLY
+1800px: TABLET PORTRAIT
+
+
+$breakpoint argument choices
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+
+ORDER: Base + typography > general layout + grid > page layout > components
+ */
+@keyframes pan-image {
+  0% {
+    background-position: 36% 42%;
+    background-size: 150%; }
+  20% {
+    background-position: 30% 35%;
+    background-size: 150%; }
+  20.0001% {
+    /* -- View 2 -- */
+    background-position: 60% 85%;
+    background-size: 250%; }
+  40% {
+    background-position: 49% 81%;
+    background-size: 250%; }
+  40.0001% {
+    /* -- View 3 -- */
+    background-position: 80% 42%;
+    background-size: 200%; }
+  60% {
+    background-position: 84% 33%;
+    background-size: 200%; }
+  60.0001% {
+    /* -- View 4 -- */
+    background-position: 0% 0%;
+    background-size: 200%; }
+  80% {
+    background-position: 15% 4%;
+    background-size: 200%; }
+  80.0001% {
+    /* -- View 5 -- */
+    background-position: 80% 10%;
+    background-size: 200%; }
+  100% {
+    background-position: 72% 14%;
+    background-size: 200%; } }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  /*60% {*/
+  /*    transform: rotate(180deg);*/
+  /*}*/
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+html {
+  color-scheme: dark; }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth; }
+
+body {
+  font-family: "IBM Plex Sans", monospace;
+  font-weight: 400;
+  line-height: 1.6; }
+
+header {
+  background-image: linear-gradient(to right bottom, rgba(39, 55, 77, 0.9), rgba(248, 78, 69, 0.2)), url("/img/background/header.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  animation: pan-image 25s linear infinite; }
+  header .logo {
+    display: flex;
+    cursor: pointer; }
+    header .logo img {
+      height: 3.5rem;
+      width: auto; }
+  header .header__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: "IBM Plex Sans", monospace;
+    font-size: 1.8rem; }
+    header .header__wrapper .header__text {
+      color: #DDE6ED;
+      letter-spacing: 10px;
+      margin-bottom: 2rem;
+      font-weight: 700; }
+      header .header__wrapper .header__text h1 {
+        text-transform: uppercase;
+        background-color: #F84E45;
+        animation: moveInBottom 1s ease-out; }
+      header .header__wrapper .header__text p {
+        animation: moveInBottom 1.7s ease-out; }
+
+.nav {
+  font-family: "IBM Plex Sans", monospace;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  padding: 20px 0 20px 0; }
+  @media screen and (min-width: 75em) {
+    .nav {
+      max-width: 85%;
+      margin-left: auto;
+      margin-right: auto; } }
+
+.nav ul {
+  --_gap: 2rem;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.nav a {
+  color: #DDE6ED;
+  opacity: 0.7;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 500; }
+
+.nav a:hover,
+.nav a:focus-visible {
+  opacity: 1; }
+
+.nav li {
+  overflow: hidden;
+  position: relative;
+  padding: calc(var(--_gap) / 2);
+  min-inline-size: 3rem; }
+
+.nav li::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 3px;
+  background-color: #F84E45;
+  translate: var(--_translate, 0);
+  scale: var(--_scale, 0) 1;
+  transition: scale 100ms var(--_scale-delay, 0ms), translate 200ms; }
+
+/* A previous sibling is hovered */
+.nav li:hover ~ li {
+  --_translate: -100%;
+  --_scale-delay: 200ms; }
+
+/* Any other sibling is hovered */
+.nav:hover li {
+  --_translate: 100%;
+  --_scale-delay: 200ms; }
+
+/*
+  The actually hovered <li>
+
+  NOTE: same specificity as previous selector, so it must either come after or be artificially inflated (eg. :hover:hover)
+*/
+.nav li:hover {
+  --_scale: 1;
+  --_translate: 0;
+  --_scale-delay: 0ms; }
+
+.section {
+  position: relative;
+  box-shadow: 0 0 4em #27374D;
+  width: 100%; }
+
+.section-full {
+  height: 100vh; }
+
+.section-half {
+  height: 50vh; }
+
+.section-color-primary {
+  background-color: #DDE6ED; }
+
+.section-color-accent {
+  background-color: #F84E45; }
+
+.section-color-background {
+  background-color: #27374D; }
+
+.section-about__wrapper {
+  padding: 0 16px;
+  width: 100%;
+  height: 100%; }
+  @media screen and (min-width: 75em) {
+    .section-about__wrapper {
+      max-width: 85%;
+      margin-left: auto;
+      margin-right: auto; } }
+
+.section-about__logo {
+  cursor: pointer; }
+  .section-about__logo img {
+    filter: brightness(0) invert(1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 3.5rem; }
+
+.section-about:hover {
+  background-color: #27374D; }

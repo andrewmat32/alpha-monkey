@@ -1,0 +1,28 @@
+.section {
+    position: relative;
+    @include boxShadow( $color-background );
+
+    width: 100%;
+}
+
+.section-full {
+    height: 100vh;
+}
+
+.section-half {
+    height: 50vh;
+}
+
+.section-color-primary {
+    background-color: $color-primary;
+}
+
+.section-color-accent {
+    background-color: $color-accent;
+}
+
+.section-color-background {
+    background-color: $color-background;
+}
+
+@import 'sections/_section_about';
