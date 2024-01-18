@@ -87,7 +87,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
     @if $animate {
         animation:
-              typing 3.5s steps(40, end),
+              typing 1.5s steps(40, end),
               blink-caret .75s step-end infinite;
     }
 }
@@ -100,4 +100,21 @@ ORDER: Base + typography > general layout + grid > page layout > components
 @mixin transitionOpacityOut( $time ) {
     opacity: 1;
     transition: opacity $time ease-in-out;
+}
+
+@mixin smoothFadingGradient( $direction, $r, $g, $b ) {
+  background: linear-gradient($direction,
+          rgba($r, $g, $b) 0%,
+          rgba($r, $g, $b, 0.738) 19%,
+          rgba($r, $g, $b, 0.541) 34%,
+          rgba($r, $g, $b, 0.382) 47%,
+          rgba($r, $g, $b, 0.278) 56.5%,
+          rgba($r, $g, $b, 0.194) 65%,
+          rgba($r, $g, $b, 0.126) 73%,
+          rgba($r, $g, $b, 0.075) 80.2%,
+          rgba($r, $g, $b, 0.042) 86.1%,
+          rgba($r, $g, $b, 0.021) 91%,
+          rgba($r, $g, $b, 0.008) 95.2%,
+          rgba($r, $g, $b, 0.002) 98.2%,
+          transparent 100% );
 }

@@ -6,6 +6,7 @@
         @include container();
         width: 100%;
         height: 100%;
+        padding-top: 4.5%;
     }
 
     &__logo {
@@ -13,7 +14,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 86px;
+        //padding-top: 86px;
 
         img {
             filter: brightness(0) invert(1);
@@ -27,12 +28,15 @@
         padding-top: 20px;
         @include transitionOpacityIn( 1s );
         color: $color-primary;
+        width: max-content;
+        margin: 0 auto;
 
         .typewriter {
             font-family: $font-primary;
             @include typeWriter( $color-primary );
-            margin: 0 545px;
+            //margin: 0 545px;
         }
+
     }
 
     &__text {
@@ -49,7 +53,7 @@
 
 .section-about:hover {
     //background-color: $color-background;
-    height: 50vh;
+    height: 40vh;
     transition: height 1s ease-in-out;
 
     .section-about__subtitle {
@@ -59,7 +63,7 @@
         .typewriter {
             display: block;
             @include typeWriter( $color-primary, true );
-            margin: 0 545px;
+            //margin: 0 545px;
         }
     }
 
