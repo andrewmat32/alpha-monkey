@@ -55,3 +55,9 @@ body {
 //    --color-8: rgba(255,255,255,0.075);
 //    --x: 45deg;
 //}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: $color-secondary;
+}

@@ -109,3 +109,26 @@
     from, to { border-color: transparent }
     50% { border-color: $color-primary; }
 }
+
+@keyframes fadeOverlay {
+    0% {
+        opacity: .7;
+        background: $color-background;
+        color: $color-secondary;
+
+    }
+    100% {
+        opacity: .9;
+        background: $color-accent;
+        color: $color-background;
+    }
+}
+
+@keyframes rotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
