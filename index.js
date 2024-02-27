@@ -133,7 +133,7 @@ function createTestimonialSlides( data )
 
         const imageOverlay = document.createElement( 'div' );
         imageOverlay.classList.add( 'section-testimonials__item__image-overlay' );
-        imageOverlay.innerHTML = '<i class="fas fa-quote-left">' + image.user.first_name + ' ' + image.user.last_name+'</i>';
+        imageOverlay.innerHTML = image.user.first_name + ' ' + image.user.last_name;
         imageContainer.appendChild( imageOverlay );
 
         // Create text container div
@@ -185,7 +185,7 @@ function createTestimonialSlides( data )
             testimonial.classList.add( 'active' );
         }, time );
         time += 200;
-    })
+    } )
 }
 
 function getCurrentViewportForTestimonials()
@@ -214,6 +214,7 @@ function getCurrentViewportForTestimonials()
 }
 
 let scrollAmount = 0;
+
 function testimonialNavigation( direction, navigation )
 {
     let testimonialIndex = 0;

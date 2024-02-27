@@ -4,3 +4,11 @@ $color-secondary: #D7DBDE;
 $color-accent: rgb(248, 78, 69);
 $color-background: #27374D;
 $color-black: #000;
+
+
+$filter-primary: invert(88%) sepia(15%) saturate(7360%) hue-rotate(186deg) brightness(96%) contrast(94%);
+$filter-secondary: invert(83%) sepia(6%) saturate(293%) hue-rotate(161deg) brightness(93%) contrast(85%);
+$filter-accent: invert(27%) sepia(66%) saturate(2745%) hue-rotate(353deg) brightness(104%) contrast(99%);
+$filter-background: invert(14%) sepia(20%) saturate(1353%) hue-rotate(195deg) brightness(98%) contrast(91%);
+$filter-black: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+
