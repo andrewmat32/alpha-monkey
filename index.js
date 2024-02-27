@@ -20,7 +20,6 @@ function scrollFunction()
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
 function topFunction()
 {
     document.body.scrollTop = 0;
@@ -39,11 +38,9 @@ function getUnsplashImages( query = 'nature' )
         'Authorization': `Client-ID ${ ACCESS_KEY }`
     };
 
-    // Construct the URL
     const url = new URL( BASE_URL + searchEndpoint );
     url.search = params;
 
-    // Make the GET request using Fetch
     fetch( url, { headers } )
         .then( response =>
         {
