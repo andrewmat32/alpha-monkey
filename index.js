@@ -31,20 +31,10 @@ function topFunction()
 function getUnsplashImages( query = 'nature' )
 {
     // const accessKey = 'PU3ADRlZJxd7BfdhEgCARvTf-riIwpNtdfOxUQhzEkg';
-
-    // Your Unsplash API access key
     const ACCESS_KEY = 'PU3ADRlZJxd7BfdhEgCARvTf-riIwpNtdfOxUQhzEkg';
-
-    // Base URL for the Unsplash API
     const BASE_URL = 'https://api.unsplash.com';
-
-    // Endpoint for searching photos
     const searchEndpoint = '/search/photos';
-
-    // Parameters for the API call
     const params = new URLSearchParams( { query } );
-
-    // Headers including your API access key
     const headers = {
         'Authorization': `Client-ID ${ ACCESS_KEY }`
     };
@@ -57,23 +47,19 @@ function getUnsplashImages( query = 'nature' )
     fetch( url, { headers } )
         .then( response =>
         {
-            // Check if response is successful
             if( !response.ok )
             {
                 throw new Error( `HTTP error! status: ${ response.status }` );
             }
-            // Parse the JSON response
             return response.json();
         } )
         .then( data =>
         {
-            // Process the response data
             console.log( 'Success:', data );
             createTestimonialSlides( data );
         } )
         .catch( error =>
         {
-            // Handle errors
             console.error( 'Error:', error.message );
         } );
 }
@@ -102,7 +88,6 @@ function createTestimonialSlides( data )
 
     data.results.forEach( ( image, index ) =>
     {
-        // Create main container div
         const testimonialItem = document.createElement( 'div' );
         testimonialItem.classList.add( 'section-testimonials__item' );
         testimonialItem.id = `testimonial-${ index }`;
@@ -119,16 +104,13 @@ function createTestimonialSlides( data )
         const testimonialContent = document.createElement( 'div' );
         testimonialContent.classList.add( 'section-testimonials__item__content' );
 
-        // Create image container div
         const imageContainer = document.createElement( 'div' );
         imageContainer.classList.add( 'section-testimonials__item__image' );
 
-        // Create image element
         const img = document.createElement( 'img' );
         img.src = image.urls[currentViewport];
         img.alt = image.alt_description;
 
-        // Append image to image container
         imageContainer.appendChild( img );
 
         const imageOverlay = document.createElement( 'div' );
@@ -136,40 +118,31 @@ function createTestimonialSlides( data )
         imageOverlay.innerHTML = image.user.first_name + ' ' + image.user.last_name;
         imageContainer.appendChild( imageOverlay );
 
-        // Create text container div
         const textContainer = document.createElement( 'div' );
         textContainer.classList.add( 'section-testimonials__item__text' );
 
-        // Create and set text
         const text = document.createElement( 'p' );
         text.textContent = '“Alpha Monkey is a great company to work with. They are very professional and responsive. They are very knowledgeable in their field and are always willing to help. I would highly recommend them to anyone looking for a great company to work with.”';
 
-        // Append text to text container
         textContainer.appendChild( text );
 
-        // Create author container div
         const authorContainer = document.createElement( 'div' );
         authorContainer.classList.add( 'section-testimonials__item__author' );
 
-        // Create author name paragraph
         const authorName = document.createElement( 'p' );
         authorName.textContent = image.user.first_name + ' ' + image.user.last_name;
 
-        // Create author position paragraph
         const authorPosition = document.createElement( 'p' );
         authorPosition.textContent = image.user.location;
 
-        // Append author name and position to author container
         authorContainer.appendChild( authorName );
         authorContainer.appendChild( authorPosition );
 
-        // Append image container, text container, and author container to testimonial item
         testimonialItem.appendChild( imageContainer );
         testimonialContent.appendChild( textContainer );
         testimonialContent.appendChild( authorContainer );
         testimonialItem.appendChild( testimonialContent );
 
-        // Append testimonial item to parent container (assuming testimonials is the parent container)
         testimonials.appendChild( testimonialItem );
 
         testimonials.style.transition = 'all .9s ease-out';
@@ -190,12 +163,10 @@ function createTestimonialSlides( data )
 
 function getCurrentViewportForTestimonials()
 {
-    // Define the breakpoints for the different viewport 'sizes'
     const breakpoints = { 'phone': '600', 'tab-port': '900', 'tab-land': '1200', 'big-desktop': '1800' };
     const imageSizes = { 'phone': 'thumb', 'tab-port': 'small', 'tab-land': 'small', 'big-desktop': 'small' };
 
     let breakpoint = breakpoints['big-desktop'];
-    // Get the current viewport width
     const currentWidth = window.innerWidth;
     for( const bp in breakpoints )
     {
