@@ -50,3 +50,8 @@
     height: auto;
     transition: height 0.5s ease-in-out;
 }
+
+.custom-shape-divider-top-1-primary .shape-fill {
+    fill: $color-primary;
+
+}

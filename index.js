@@ -88,6 +88,7 @@ function createTestimonialSlides( data )
         const testimonialItem = document.createElement( 'div' );
         testimonialItem.classList.add( 'section-testimonials__item' );
         testimonialItem.id = `testimonial-${ index }`;
+        testimonialItem.onclick = () => navigateToTestimonial( index );
 
         if( index === 0 )
         {
@@ -263,3 +264,160 @@ function resetTestimonials( direction, navigation )
         navigation.style.pointerEvents = 'auto';
     }
 }
+
+function navigateToTestimonial( index )
+{
+    const testimonialTrack = document.getElementById( 'testimonials-track' );
+    const testimonial = testimonialTrack.querySelector( `#testimonial-${ index }` );
+    if( testimonial )
+    {
+        const activeTestimonial = document.querySelector( '.section-testimonials__item--active' );
+        if( activeTestimonial )
+        {
+            activeTestimonial.classList.remove( 'section-testimonials__item--active' );
+        }
+        testimonial.classList.add( 'section-testimonials__item--active' );
+        scrollAmount = testimonial.offsetLeft;
+        testimonialTrack.style.left = -scrollAmount + 'px';
+    }
+}
+
+let fakeNewsletterServer = [];
+document.getElementById( "newsletterForm" ).addEventListener( "submit", function( event )
+{
+    event.preventDefault();
+    let email = document.getElementById( "emailInput" ).value.trim();
+    const newsletterForm = document.getElementById( "newsletterForm" );
+    const emailSubmit = document.getElementById( "emailSubmitNewsletter" );
+    const errorMessage = document.getElementById( "errorMessageNewsletter" );
+    const successMessage = document.getElementById( "successMessageNewsletter" );
+
+    emailSubmit.style.display = "none";
+    if( !email || !validateEmail( email ) )
+    {
+        errorMessage.innerText = "Please enter a valid email address.";
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+        resetOnSubmit( successMessage, errorMessage, emailSubmit );
+        return;
+    }
+
+    if( fakeNewsletterServer.includes( email ) )
+    {
+        errorMessage.innerText = "You have already subscribed to our newsletter.";
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+        return;
+    }
+
+    email = sanitizeInput( email );
+
+    createLoader( newsletterForm );
+    setTimeout( function()
+    {
+        errorMessage.style.display = "none";
+        successMessage.innerText = `Thank you for subscribing to our newsletter!`;
+        successMessage.style.display = "block";
+        resetOnSubmit( successMessage, errorMessage, emailSubmit );
+        removeLoader( newsletterForm );
+        document.getElementById( "newsletterForm" ).reset();
+    }, 1000 );
+
+    fakeNewsletterServer.push( email );
+} );
+
+const validateEmail = ( email ) =>
+{
+    return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
+function sanitizeInput( input )
+{
+    return input.replace( /</g, "&lt;" ).replace( />/g, "&gt;" );
+}
+
+function resetOnSubmit( successMessage, errorMessage, emailSubmit )
+{
+    emailSubmit.style.display = "block";
+
+    setTimeout( function()
+    {
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+    }, 4000 );
+}
+
+
+function createLoader( parent )
+{
+    const loader = document.createElement( 'div' );
+    loader.classList.add( 'loader-wrapper' );
+
+    const loaderDiv = document.createElement( 'div' );
+    loaderDiv.classList.add( 'loader' );
+
+    loader.appendChild( loaderDiv );
+    parent.appendChild( loader );
+}
+
+function removeLoader( parent )
+{
+    const loader = parent.querySelector( '.loader-wrapper' );
+    if( loader )
+    {
+        loader.remove();
+    }
+}
+
+document.getElementById( "contactForm" ).addEventListener( "submit", function( event )
+{
+    event.preventDefault();
+    const contactForm = document.getElementById( "contactForm" );
+    const button = document.getElementById( "contactSubmit" );
+    let name = document.getElementById( "nameInput" ).value.trim();
+    let email = document.getElementById( "emailInput" ).value.trim();
+    let message = document.getElementById( "messageInput" ).value.trim();
+
+    const errorMessage = document.getElementById( "errorMessage" );
+    const successMessage = document.getElementById( "successMessage" );
+
+    if( !name || !email || !message )
+    {
+        errorMessage.innerText = "Please fill in all fields.";
+        errorMessage.style.display = "block";
+
+        resetOnSubmit( successMessage, errorMessage, button );
+        return;
+    }
+
+    if( !validateEmail( email ) )
+    {
+        errorMessage.innerText = "Please enter a valid email address.";
+        errorMessage.style.display = "block";
+
+        resetOnSubmit( successMessage, errorMessage, button );
+        return;
+    }
+
+    name = sanitizeInput( name );
+    email = sanitizeInput( email );
+    message = sanitizeInput( message );
+
+    errorMessage.style.display = "none";
+
+    button.style.display = "none";
+    createLoader( contactForm );
+    setTimeout( function()
+    {
+        removeLoader( contactForm );
+        document.getElementById( "contactForm" ).reset();
+        successMessage.innerText = "Thank you for contacting us. We will get back to you as soon as possible.";
+        successMessage.style.display = "block";
+        button.style.display = "block";
+
+        resetOnSubmit( successMessage, errorMessage, button );
+    }, 1000 );
+} );
+

@@ -24,6 +24,10 @@
     background-color: $color-primary;
 }
 
+.section-color-secondary {
+    background-color: $color-secondary;
+}
+
 .section-color-accent {
     background-color: $color-accent;
 }
@@ -34,3 +38,5 @@
 
 @import 'sections/_section_about';
 @import 'sections/_section_testimonials';
+@import 'sections/_section_services';
+@import 'sections/_section_contact';

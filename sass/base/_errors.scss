@@ -1,0 +1,17 @@
+.error-message,
+.success-message {
+    display: none;
+    margin: 1rem 0;
+    border-radius: 5px;
+    padding: .5rem;
+}
+
+.error-message {
+    color: $color-primary;
+    background-color: $color-error-light;
+}
+
+.success-message {
+    color: $color-background;
+    background-color: $color-success-light;
+}

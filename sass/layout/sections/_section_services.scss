@@ -1,0 +1,83 @@
+.section-services {
+    background-image: linear-gradient(to bottom, rgba($color-background, .2), rgba($color-primary, 1)), url("../../img/background/header-bk2.jpg");
+    background-size: cover;
+
+    .section-services__wrapper {
+        @include absCenter();
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5rem 0;
+
+        @media screen and ( min-width: $bp-large ) {
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-services__content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 2rem;
+            position: relative;
+
+            &__item {
+                &__icon {
+                    font-size: 2rem;
+                    color: $color-background;
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    font-family: $font-display;
+                    padding: 1rem;
+
+                    h3 {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: $color-background;
+                    }
+                }
+
+                &__text {
+
+                    padding: 1rem;
+                    p {
+                        font-size: 1rem;
+                        color: $color-background;
+                    }
+                }
+
+                &:hover {
+                    .section-services__content__item__icon {
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                        color: $color-primary;
+                        background-color: $color-background;
+
+                        i {
+                            animation: zoomInOut 1s linear infinite;
+                        }
+
+                        h3 {
+                            color: $color-primary;
+                        }
+                    }
+
+                    .section-services__content__item__text {
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        border: 2px solid $color-background;
+                        box-sizing: unset;
+
+                        p {
+                            margin: -2px;
+                            //color: $color-primary;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

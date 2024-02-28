@@ -14,7 +14,7 @@ $bp-small: 37.5em; // 600px
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
