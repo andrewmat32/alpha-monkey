@@ -141,3 +141,9 @@
         transform: scale(1.1); /* Zoom in */
     }
 }
+
+@keyframes scroll {
+    to {
+        transform: translate( calc( -50% - 1rem ) );
+    }
+}

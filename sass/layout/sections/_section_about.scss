@@ -2,6 +2,10 @@
     height: 25vh;
     transition: height 1s ease-in-out;
 
+    @include respond(tab-port) {
+        height: fit-content;
+    }
+
     &__wrapper {
         @include container();
         width: 100%;
@@ -33,8 +37,23 @@
 
         .typewriter {
             font-family: $font-primary;
-            @include typeWriter( $color-primary );
+            //@include typeWriter( $color-primary );
+
+            @include respond(tab-port) {
+                font-size: $size-xxs;
+                width: 100%;
+                animation: none;
+            }
             //margin: 0 545px;
+        }
+
+        @include respond(tab-port) {
+            font-size: $size-xxs;
+            width: 100%;
+
+            .typeWriter {
+                animation: none;
+            }
         }
 
     }
@@ -47,6 +66,12 @@
         margin: 0 auto;
         text-indent: 4rem;
         width: 75%;
+
+        @include respond(tab-port) {
+            font-size: $size-xxs;
+            width: 100%;
+            opacity: 1;
+        }
     }
 }
 

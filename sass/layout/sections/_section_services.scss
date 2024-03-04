@@ -3,7 +3,11 @@
     background-size: cover;
 
     .section-services__wrapper {
-        @include absCenter();
+        position: relative;
+
+        @media screen and ( min-width: $bp-large ) {
+            @include absCenter();
+        }
 
         display: flex;
         justify-content: space-between;
@@ -19,8 +23,13 @@
         .section-services__content {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: 2rem;
+            grid-gap: 5rem;
             position: relative;
+
+            @media screen and ( max-width: $bp-medium ) {
+                grid-template-columns: 1fr;
+                padding: 0 2rem;
+            }
 
             &__item {
                 &__icon {
@@ -43,6 +52,7 @@
 
                     padding: 1rem;
                     p {
+                        font-family: $font-primary;
                         font-size: 1rem;
                         color: $color-background;
                     }
@@ -79,5 +89,9 @@
             }
 
         }
+    }
+
+    @include respond(tab-land) {
+        padding: 10em 1em;
     }
 }

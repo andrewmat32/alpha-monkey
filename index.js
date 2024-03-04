@@ -12,6 +12,13 @@ function scrollFunction()
     {
         mybutton.style.display = "block";
         headerDivider.classList.add( 'show' );
+
+        let menu = document.querySelector( '.menu' );
+        if( menu.classList.contains( 'menu-open' ) )
+        {
+            menu.classList.remove( 'menu-open' );
+        }
+
     }
     else
     {
@@ -67,7 +74,15 @@ function handleIntersectionAt200px( entries, observer )
     {
         if( entry.isIntersecting && entry.intersectionRatio > 0.2 )
         {
-            getUnsplashImages( 'portrait' );
+            if( entry.target.id === 'testimonials' )
+            {
+                getUnsplashImages( 'portrait' );
+            }
+
+            if( entry.target.id === 'clients' )
+            {
+                getMockupClients();
+            }
 
             observer.disconnect();
         }
@@ -77,6 +92,10 @@ function handleIntersectionAt200px( entries, observer )
 const observeTestimonials = new IntersectionObserver( handleIntersectionAt200px, { threshold: 0.5 } );
 const testimonials = document.getElementById( 'testimonials' );
 observeTestimonials.observe( testimonials );
+
+const observeClients = new IntersectionObserver( handleIntersectionAt200px, { threshold: 0.5 } );
+const clients = document.getElementById( 'clients' );
+observeClients.observe( clients );
 
 function createTestimonialSlides( data )
 {
@@ -286,7 +305,7 @@ let fakeNewsletterServer = [];
 document.getElementById( "newsletterForm" ).addEventListener( "submit", function( event )
 {
     event.preventDefault();
-    let email = document.getElementById( "emailInput" ).value.trim();
+    let email = document.getElementById( "emailInputNewsletter" ).value.trim();
     const newsletterForm = document.getElementById( "newsletterForm" );
     const emailSubmit = document.getElementById( "emailSubmitNewsletter" );
     const errorMessage = document.getElementById( "errorMessageNewsletter" );
@@ -307,6 +326,7 @@ document.getElementById( "newsletterForm" ).addEventListener( "submit", function
         errorMessage.innerText = "You have already subscribed to our newsletter.";
         errorMessage.style.display = "block";
         successMessage.style.display = "none";
+        resetOnSubmit( successMessage, errorMessage, emailSubmit );
         return;
     }
 
@@ -420,4 +440,101 @@ document.getElementById( "contactForm" ).addEventListener( "submit", function( e
         resetOnSubmit( successMessage, errorMessage, button );
     }, 1000 );
 } );
+
+document.querySelector( '.menu-button' ).addEventListener( 'click', function()
+{
+    document.querySelector( '.menu' ).classList.toggle( 'menu-open' );
+} );
+
+async function getMockupClients()
+{
+    const response = await fetch( 'https://randomuser.me/api/?results=20' );
+    const data = await response.json();
+    renderMockupClients( data );
+}
+
+function renderMockupClients( data )
+{
+    const clients = document.getElementById( 'clients' );
+
+    const outerWrapper = document.createElement( 'div' );
+    outerWrapper.classList.add( 'section-clients__wrapper' );
+
+    const innerWrapper = document.createElement( 'div' );
+    innerWrapper.classList.add( 'section-clients__inner' );
+
+    data.results.forEach( ( client, index ) =>
+    {
+        // const clientItem = document.createElement( 'div' );
+        // clientItem.classList.add( 'section-clients__item' );
+        //
+        // const img = document.createElement( 'img' );
+        // img.src = client.picture.large;
+        // img.alt = client.name.first + ' ' + client.name.last;
+        //
+        // clientItem.appendChild( img );
+        // clients.appendChild( clientItem );
+
+        console.log( client )
+
+        const innerItem = document.createElement( 'div' );
+        innerItem.classList.add( 'section-clients__inner-item' );
+
+        const image = document.createElement( 'img' );
+        image.src = client.picture.medium;
+        image.alt = client.name.first + ' ' + client.name.last;
+        // image.setAttribute('src', ''); // Set the src attribute
+        // image.setAttribute('alt', ''); // Set the alt attribute
+
+
+        const span = document.createElement( 'span' );
+        span.textContent = client.name.first + ' ' + client.name.last;
+
+        const paragraph = document.createElement( 'p' );
+        paragraph.textContent = client.location.city + ', ' + client.location.country;
+
+        span.appendChild( paragraph );
+
+        innerItem.appendChild( image );
+        innerItem.appendChild( span );
+
+        innerWrapper.appendChild( innerItem );
+        outerWrapper.appendChild( innerWrapper );
+
+        // outerWrapper.setAttribute("data-direction", "right");
+        // outerWrapper.appendChild(innerWrapper);
+    } );
+
+    clients.appendChild( outerWrapper );
+
+    animateClients();
+}
+
+function animateClients()
+{
+    if( !window.matchMedia( "(prefers-reduced-motion: reduce)" ).matches )
+    {
+        addClientsAnimation();
+    }
+}
+
+function addClientsAnimation()
+{
+    const clientWrapper = document.querySelectorAll( '.section-clients__wrapper' );
+    clientWrapper.forEach( wrapper =>
+    {
+        wrapper.setAttribute( "data-animated", "true" );
+        const innerItems = wrapper.querySelector( '.section-clients__inner' );
+        const innerContent = Array.from( innerItems.children );
+
+        innerContent.forEach( ( item, index ) =>
+        {
+            const duplicatedItem = item.cloneNode( true );
+            duplicatedItem.setAttribute( "aria-hidden", "true" );
+            innerItems.appendChild( duplicatedItem );
+        } );
+    } );
+
+
+}
 

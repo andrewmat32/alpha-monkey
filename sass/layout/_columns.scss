@@ -6,15 +6,14 @@
 .column {
     flex: 1;
     padding: 20px;
-    margin-right: 20px; /* Adjust margin between columns */
+    margin-right: 20px;
     color: $color-secondary;
 }
 
 .column:last-child {
-    margin-right: 0; /* Remove margin for the last column */
+    margin-right: 0;
 }
 
-/* Optional: Add responsive styles */
 @media (max-width: 768px) {
     .columns {
         flex-direction: column;
@@ -22,6 +21,6 @@
 
     .column {
         margin-right: 0;
-        margin-bottom: 20px; /* Adjust margin between columns for mobile view */
+        margin-bottom: 20px;
     }
 }

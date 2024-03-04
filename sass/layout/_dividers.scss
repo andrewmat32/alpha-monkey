@@ -53,5 +53,11 @@
 
 .custom-shape-divider-top-1-primary .shape-fill {
     fill: $color-primary;
+}
 
+.custom-shape-divider-bottom-1,
+.custom-shape-divider-top-1 {
+    svg {
+        width: 400%;
+    }
 }

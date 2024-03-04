@@ -1,20 +1,11 @@
 .section-testimonials {
     &__slider {
-        //padding: 0 16px;
-        //
-        //@media screen and ( min-width: $bp-large ) {
-        //    max-width: 85%;
-        //    margin-left: auto;
-        //    margin-right: auto;
-        //}
-
         padding-left: 159px;
 
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
-        //margin: 0 auto;
         overflow: hidden;
 
         &__navigation {
@@ -39,6 +30,10 @@
                 cursor: pointer;
                 color: $color-background;
                 font-weight: 1000;
+
+                //@include respond(tab-port) {
+                //    font-weight: 600;
+                //}
             }
         }
     }
@@ -95,6 +90,16 @@
                     opacity: .9;
                 }
             }
+
+            @include respond(tab-port) {
+                width: 300px;
+                height: 300px;
+
+                img {
+                    width: 300px;
+                    height: 300px;
+                }
+            }
         }
 
         &__content {
@@ -114,6 +119,18 @@
                 bottom: 43px;
                 left: -20px;
                 border-bottom: 2px solid $color-background;
+
+                @include respond(tab-port) {
+                    display: none;
+                }
+            }
+        }
+
+        @include respond(tab-port) {
+            flex-direction: column;
+
+            &__content {
+
             }
         }
     }
@@ -153,6 +170,22 @@
             border-radius: 10px;
             opacity: 0;
         }
+
+        @include respond(tab-port) {
+            box-shadow: none;
+            width: 400px
+        }
+    }
+
+    @include respond(tab-port) {
+        padding: 10rem 1rem;
+
+        &__slider {
+            //width: 300px;
+            padding-left: 0;
+        }
+
+
     }
 }
 
@@ -171,12 +204,15 @@
 }
 
 .section-testimonials__slider__navigation div {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+    @include respond(tab-port) {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        font-weight: 600;
+    }
 }
 
 .section-testimonials__slider__navigation div:hover {

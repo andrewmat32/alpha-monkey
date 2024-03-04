@@ -20,6 +20,15 @@
     min-height: 25vh;
 }
 
+.section-full,
+.section-half,
+.section-quarter {
+    @media screen and ( max-width: $bp-medium ) {
+        position: relative;
+        height: fit-content;
+    }
+}
+
 .section-color-primary {
     background-color: $color-primary;
 }
@@ -39,4 +48,6 @@
 @import 'sections/_section_about';
 @import 'sections/_section_testimonials';
 @import 'sections/_section_services';
+@import 'sections/_section_future';
 @import 'sections/_section_contact';
+@import 'sections/_section_clients';

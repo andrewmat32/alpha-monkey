@@ -135,6 +135,14 @@
                     box-shadow: 0 0 2rem $color-error;
                 }
             }
+
+            @include respond(tab-land) {
+                //padding: .5rem;
+                width: inherit;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                padding: 2rem 2rem;
+            }
         }
 
         .section-contact__image {
@@ -167,6 +175,10 @@
                 border-bottom-right-radius: 10px;
                 border-top-right-radius: 10px;
             }
+
+            @include respond(tab-land) {
+                display: none;
+            }
         }
 
         .section-contact__image:has(#overlay:hover) {
@@ -175,7 +187,24 @@
                 filter: grayscale(0);
             }
         }
+
+
+        @include respond(tab-land) {
+            padding: 0;
+            width: fit-content;
+            position: relative;
+            transform: translate(0);
+            top: 0;
+            left: 0;
+            border: none;
+        }
     }
 
-
+    @include respond(tab-land) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10em 1em;
+    }
 }
