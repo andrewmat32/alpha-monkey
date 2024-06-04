@@ -475,8 +475,6 @@ function renderMockupClients( data )
         // clientItem.appendChild( img );
         // clients.appendChild( clientItem );
 
-        console.log( client )
-
         const innerItem = document.createElement( 'div' );
         innerItem.classList.add( 'section-clients__inner-item' );
 
